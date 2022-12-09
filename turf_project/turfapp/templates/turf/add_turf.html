@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <div class="form-group">
+            <label for="exampleFormControlFile1">Upload images</label>
+            <input class="image-input" type="file" name="image" accept="image/png, image/jpeg" multiple>
+            <button id="add-image" class="btn btn-primary">Add more image</button>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    
+</div>
+{% endblock content %}
+{% block script %}
+<script>
+    $('#div_id_latitude, #div_id_longitude').wrapAll('<fieldset id="location_fieldset"></fieldset>')
+    $('#location_fieldset').prepend('<legend>Location:</legend>');
+    var count = 1;
+    $('#add-image').on('click', function(e) {
+        console.log(e);
+        e.preventDefault()
+        count++;    
+        $(`<input class="image-input" type="file" name=${"image" + count} accept="image/png, image/jpeg"/> `).insertAfter($(".image-input").last())
+    })
+</script>
+{% endblock script %}

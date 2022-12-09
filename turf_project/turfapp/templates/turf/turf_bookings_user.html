@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .card {
+        padding: 10px;
+        width: 60rem;
+        border: 1px solid grey;
+        border-radius: 10px;
+        margin: 5px;
+    }
+</style>
+<div class="container">
+    {% for obj in object_list %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Booked {{obj.turf.name }} </h5>
+                <p class="card-text">
+                    User: {{obj.user.username}} <br>
+                    Booking Date : {{ obj.date }}
+                    Time: {{ obj.time_from }} - {{ obj.time_to }}
+                </p>
+            </div>
+        </div>
+    {% empty %}
+    <h1>You haven't booked any turf!</h1>
+    {% endfor %}
+</div>
+{% endblock content %}

@@ -1,0 +1,150 @@
+
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PlayMakers</title>
+        <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all">
+        <!-- web-font -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,300,700,800,400,600' rel='stylesheet' type='text/css'>
+        <!-- web-font -->
+        <!-- js -->
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <!-- js -->
+        <!-- start-smoth-scrolling -->
+        <script type="text/javascript" src="{% static 'js/move-top.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/easing.js' %}"></script>
+        <script type="text/javascript">
+            jQuery(document).ready(function($) {
+                $(".scroll").click(function(event){		
+                    event.preventDefault();
+                    $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+                });
+            });
+        </script>
+<!-- start-smoth-scrolling -->
+<!-- animated-css -->
+        <link href="{% static 'css/animate.css' %}" rel="stylesheet" type="text/css" media="all">
+        <script src="{% static 'js/wow.min.js' %}"></script>
+        <script>
+         new WOW().init();
+        </script>
+<!-- animated-css -->
+    <style>
+        form input[type="text"] {
+            padding: 0;
+            margin-bottom: 0;
+        }
+    </style>
+    </head>
+    <body>
+        <!-- header -->
+        <div id="home" class="heder">
+            <!-- container -->
+            <div class="container">
+                <div class="header-top">
+                    <div class="heder-logo">
+                        <h1><a href="#">PlayMakers</a></h1>
+                    </div>
+                    <div class="top-nav">
+                    <span class="menu"><img src="{% static 'images/menu.png' %}" alt=""></span>
+                        <ul class="nav1">
+
+                            <li><a class="scroll" href="#home">Home</a></li>
+                            <li><a class="scroll" href="#services">Services</a></li>
+                            <li><a class="scroll" href="#portfolio">Works</a></li>
+                            <li><a class="scroll" href="#about">About</a></li>
+                            <li><a class="scroll" href="#contact">Contact</a></li>
+                            <li><a class="Signup play-icon popup-with-zoom-anim" href="#small-dialog2">Sign up</a></li></ul>
+
+                        </ul>
+                        <!-- script-for-menu -->
+                             <script>
+                               $( "span.menu" ).click(function() {
+                                 $( "ul.nav1" ).slideToggle( 300, function() {
+                                 // Animation complete.
+                                  });
+                                 });
+                            </script>
+                        <!-- /script-for-menu -->
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <!-- container -->
+        </div>
+        
+            <!-- container -->
+        </div>
+        
+            <head>
+            <meta charset="UTF-8">
+            <title>complaints</title>
+            </head>
+            <body>
+            
+            
+            
+            <h1>List of complaints</h1>
+            <table border="1" width="600">
+            <tr>
+            <td><br><b><center>Username</center></b></td>
+            <td><br><b><center>Ownername</center></b></td>
+            <td><br><b><center>Contact</center></b></td>
+            <td><br><b><center>Turfdetails</center></b></td>
+            <td><br><b><center>Complaint</center></b></td>
+            </tr>
+            
+            {% for v in Post %}
+            <tr>
+            <td>{{ v.username }}</td>
+            <td>{{ v.ownername }}</td>
+            <td>{{ v.contact }}</td>
+            <td>{{ v.turfdetails }}</td>
+            <td>{{ v.complaint }}</td>
+            
+            
+            
+            </tr>
+            {% endfor %}
+            </table>
+            
+            
+            </body>
+            <script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpbh-mt'},{'server':'p3plmcpnl487010'},{'id':'8437534'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script><br><br><br>
+            
+            
+            
+            
+            
+            
+
+
+
+
+
+        <!-- footer -->
+        <div class="footer">
+            <!-- container -->
+            <div class="container">
+                <h4>PlayMakers</h4>
+                <div class="copyright">
+                    <p>
+                        Template by <a href="http://w3layouts.com/">W3layouts.com</a>
+                    </p>
+                </div>
+                <a class="scroll" href="#home"><img src="{% static 'images/up-arrow.png' %}" alt="" /></a>
+            </div>
+            <!-- container -->
+        </div>
+        <!-- footer -->
+    </body>
+</html>
+

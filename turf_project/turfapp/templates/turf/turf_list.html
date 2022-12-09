@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    body {
+        background: #d1d5db
+    }
+
+    .height {
+        height: 100vh
+    }
+
+    .form {
+        position: relative
+    }
+
+    .form .fa-search {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        color: #9ca3af
+    }
+
+    .form span {
+        position: absolute;
+        right: 17px;
+        top: 13px;
+        padding: 2px;
+        border-left: 1px solid #d1d5db
+    }
+
+    .left-pan {
+        padding-left: 7px
+    }
+
+    .left-pan i {
+        padding-left: 10px
+    }
+
+    .form-input {
+        height: 55px;
+        text-indent: 33px;
+        border-radius: 10px
+    }
+
+    .form-input:focus {
+        box-shadow: none;
+        border: none
+    }
+</style>
+<div class="container">
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="form"> <i class="fa fa-search"></i> <input type="text" name="name" class="form-control form-input"
+                placeholder="Search Turf"> <span class="left-pan"><i class="fa fa-microphone"></i></span>
+        </div>
+
+    </form>
+    <h1>List of turfs</h1>
+    <div class="row">
+
+        {% for obj in object_list %}
+        <div class="col-md-3 col-sm-6">
+
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{ obj.images.first.image.url }}" alt="turf image" width="200px">
+                <div class="card-body">
+                    <h5 class="card-title">{{ obj.name }} - {{obj.address}}</h5>
+                    <a href="{% url 'turf_detail' pk=obj.id %}" class="btn btn-primary">View</a>
+                    <a href="{% url 'booking' turf_id=obj.id %}" class="btn btn-primary">Book</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock content %}

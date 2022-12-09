@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    img {
+        max-width: 300px;
+    }
+</style>
+<div class="container">
+    <h1>Order Details</h1>
+    <div class="col-md-5">
+        <table class="table table-dark">
+        <tbody>
+            <tr>
+                <th scope="row">Order Id</th>
+                <td>{{object.order_id}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Booking Date</th>
+                <td>{{object.date}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Booking Time</th>
+                <td>{{object.time_from}} - {{object.time_to}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Turf name</th>
+                <td>{{ object.turf.name }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Price paid</th>
+                <td>$ {{ object.turf.rent_per_hour }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-primary">Print</button>
+    </div>
+    
+</div>
+{% endblock content %}

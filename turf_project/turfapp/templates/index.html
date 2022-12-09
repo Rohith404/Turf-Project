@@ -1,0 +1,618 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>PlayMakers</title>
+		<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+		<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all">
+		<!-- web-font -->
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,300,700,800,400,600' rel='stylesheet' type='text/css'>
+		<!-- web-font -->
+		<!-- js -->
+		<script src="{% static 'js/jquery.min.js' %}"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<!-- js -->
+		<!-- start-smoth-scrolling -->
+		<script type="text/javascript" src="{% static 'js/move-top.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/easing.js' %}"></script>
+<!-- start-smoth-scrolling -->
+<!-- animated-css -->
+		<link href="{% static 'css/animate.css' %}" rel="stylesheet" type="text/css" media="all">
+		<script src="{% static 'js/wow.min.js' %}"></script>
+		<script>
+		 new WOW().init();
+		</script>
+<!-- animated-css -->
+	</head>
+	<body>
+		<!-- header -->
+		<div id="home" class="heder">
+			<!-- container -->
+			<div class="container">
+				<div class="header-top">
+					<div class="heder-logo">
+						<h1><a href="#">PlayMakers</a></h1>
+					</div>
+					<div class="top-nav">
+					<span class="menu"><img src="{% static 'images/menu.png' %}" alt=""></span>
+						<ul class="nav1">
+
+							
+							<li><a class="scroll" href="{% url 'register' %}">Register</a></li>
+							<li><a class="scroll" href="{% url 'login' %}">Login</a></li>
+					
+
+							
+						</ul>
+						<!-- script-for-menu -->
+							 <script>
+							   $( "span.menu" ).click(function() {
+								 $( "ul.nav1" ).slideToggle( 300, function() {
+								 // Animation complete.
+								  });
+								 });
+							</script>
+						<!-- /script-for-menu -->
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<!-- container -->
+		</div>
+		<!-- header -->
+		<!-- banner -->
+		<div class="banner">
+			<!-- container -->
+			<div class="container">
+				<div class="banner-info wow bounceIn" data-wow-delay="0.4s">
+					<a class="play-icon popup-with-zoom-anim" href="#small-dialog">
+						<span> </span>
+					</a>
+					<div class="banner-text">
+						<h2>				{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+    {% endfor %}
+</ul>
+{% endif %}</h2>
+						<p><a class="play-icon popup-with-zoom-anim" href="#small-dialog">Click to play video</a></p>
+					</div>
+					<!-- pop-up-box -->
+					<script type="text/javascript" src="{% static 'js/modernizr.custom.min.js' %}"></script>    
+					<link href="{% static 'css/popuo-box.css' %}" rel="stylesheet" type="text/css" media="all" />
+					<script src="{% static 'js/jquery.magnific-popup.js' %}" type="text/javascript"></script>
+					<!--//pop-up-box -->
+				<div id="small-dialog" class="mfp-hide">
+					<iframe src="static/Movies&Tv/34354524_our-sports-intro-sport-promo-premiere-pro_by_videostones_preview (1)"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen> </iframe>
+				</div>
+				<div id="small-dialog2" class="mfp-hide">
+			
+				</div>	
+				 <script>
+						$(document).ready(function() {
+						$('.popup-with-zoom-anim').magnificPopup({
+							type: 'inline',
+							fixedContentPos: false,
+							fixedBgPos: true,
+							overflowY: 'auto',
+							closeBtnInside: true,
+							preloader: false,
+							midClick: true,
+							removalDelay: 300,
+							mainClass: 'my-mfp-zoom-in'
+						});
+																						
+						});
+				</script>				
+				</div>
+			</div>
+			<!-- container -->
+		</div>
+		<!-- banner -->
+		<!-- services -->
+		<div id="services" class="services">
+			<!-- container -->
+			<div class="container">
+				<div class="col-md-4 services-hedding wow bounceIn" data-wow-delay="0.4s">
+
+				
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<!-- container -->
+		</div>
+		<!-- services -->
+		<!-- icons -->
+		<div class="icons">
+			<!-- container -->
+			<div class="container">
+				<ul class="wow bounceIn" data-wow-delay="0.4s">
+					<li>
+						<span class="light"> </span>
+					</li>
+					<li>
+						<span class="glob"> </span>
+					</li>
+					<li>
+						<span class="camra"> </span>
+					</li>
+					<li>
+						<span class="setting"> </span>
+					</li>
+					<li>
+						<span class="mike"> </span>
+					</li>
+					<li>
+						<span class="money"> </span>
+					</li>
+				</ul>
+			</div>
+			<!-- container -->
+		</div>
+		<!-- icons -->
+		<!-- works -->
+		<div id="portfolio" class="works">
+			<!-- container -->
+			<div class="container">
+				<div class="works-hedding wow bounceIn" data-wow-delay="0.4s">
+					<h3>Our works.</h3>
+				</div>
+				<ul id="filters">
+					<li><span class="filter active wow bounceIn" data-wow-delay="0.4s" data-filter="app card icon logo web">All</span></li>
+					<li><span class="filter wow bounceIn" data-wow-delay="0.4s" data-filter="app">Website</span></li>
+					<li><span class="filter wow bounceIn" data-wow-delay="0.4s" data-filter="card">Branding</span></li>
+				</ul>
+				<div id="portfoliolist">
+					<div class="portfolio card mix_all" data-cat="card" style="display: inline-block; opacity: 1;">
+						<div class="portfolio-wrapper wow bounceIn" data-wow-delay="0.4s">		
+							<a href="#small-dialog" class="b-link-stripe b-animate-go">
+						     <img src="{% static 'images/ball.png' %}" alt="" /><div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 ">Cricket</h2>
+							 <p class= "b-animate b-from-left    b-delay03 ">designed by CO-Founder's | January 18, 2022</p>
+						  	</div></a>
+		                </div>
+					</div>				
+					<div class="portfolio app mix_all" data-cat="app" style="display: inline-block; opacity: 1;">
+						<div class="portfolio-wrapper wow bounceIn" data-wow-delay="0.4s">		
+							<a href="#small-dialog1" class="b-link-stripe b-animate-go">
+						     <img src="{% static 'images/shuttle2.png' %}" alt="" /><div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 ">Badminton</h2>
+							 <p class="b-animate b-from-left    b-delay03 ">designed by CO-Founder's | January 18, 2022</p>
+						  	</div></a>
+		                </div>
+					</div>		
+					<div class="portfolio card mix_all" data-cat="card" style="display: inline-block; opacity: 1;">
+						<div class="portfolio-wrapper wow bounceIn" data-wow-delay="0.4s">		
+							<a href="#small-dialog2" class="b-link-stripe b-animate-go">
+						     <img src="{% static 'images/Football.png' %}" alt="" /><div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 ">Soccer</h2>
+							 <p class="b-animate b-from-left b-delay03" id="para">designed by CO-Founder's | January 18, 2022</p>
+						  	</div></a>
+		                </div>
+					</div>				
+					<div class="portfolio app mix_all" data-cat="app" style="display: inline-block; opacity: 1;">
+						<div class="portfolio-wrapper wow bounceIn" data-wow-delay="0.4s">		
+							<a href="#small-dialog3" class="b-link-stripe b-animate-go">
+						     <img src="{% static 'images/Football1.png' %}" alt="" /><div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 ">Football</h2>
+							 <p class="b-animate b-from-left    b-delay03 ">designed by CO-Founder's | January 18, 2022</p>
+						  	</div></a>
+		                </div>
+					</div>	
+					<div class="portfolio card mix_all" data-cat="card" style="display: inline-block; opacity: 1;">
+						<div class="portfolio-wrapper wow bounceIn" data-wow-delay="0.4s">		
+							<a href="#small-dialog4" class="b-link-stripe b-animate-go">
+						     <img src="{% static 'images/Running.png' %}" alt="" /><div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 ">Running</h2>
+							 <p class="b-animate b-from-left    b-delay03 ">designed by CO-Founder's | January 18, 2022</p>
+						  	</div></a>
+		                </div>
+					</div>			
+					<div class="portfolio app mix_all" data-cat="app" style="display: inline-block; opacity: 1;">
+						<div class="portfolio-wrapper wow bounceIn" data-wow-delay="0.4s">		
+							<a href="#small-dialog5" class="b-link-stripe b-animate-go">
+						     <img src="{% static 'images/ball1.png' %}" alt="" /><div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 ">Cricket</h2>
+							 <p class="b-animate b-from-left    b-delay03 ">designed by CO-Founder's | January 18, 2022</p>
+						  	</div></a>
+		                </div>
+					</div>
+					<div class="clearfix"></div>	
+				</div>
+				<!-- Script for gallery Here -->
+				<script type="text/javascript" src="{% static 'js/jquery.mixitup.min.js' %}"></script>
+					<script type="text/javascript">
+					$(function () {
+						
+						var filterList = {
+						
+							init: function () {
+							
+								// MixItUp plugin
+								// http://mixitup.io
+								$('#portfoliolist').mixitup({
+									targetSelector: '.portfolio',
+									filterSelector: '.filter',
+									effects: ['fade'],
+									easing: 'snap',
+									// call the hover effect
+									onMixEnd: filterList.hoverEffect()
+								});				
+							
+							},
+							
+							hoverEffect: function () {
+							
+								// Simple parallax effect
+								$('#portfoliolist .portfolio').hover(
+									function () {
+										$(this).find('.label').stop().animate({bottom: 0}, 200, 'easeOutQuad');
+										$(this).find('img').stop().animate({top: -30}, 500, 'easeOutQuad');				
+									},
+									function () {
+										$(this).find('.label').stop().animate({bottom: -40}, 200, 'easeInQuad');
+										$(this).find('img').stop().animate({top: 0}, 300, 'easeOutQuad');								
+									}		
+								);				
+							
+							}
+				
+						};
+						
+						// Run the show!
+						filterList.init();	
+					});	
+					</script>
+			<!-- Gallery Script Ends -->
+				<div class="clearfix"></div>
+				<div class="plus wow fadeInLeft"> 
+					<a href="#"><img src="{% static 'images/plus.png' %}" alt="" /></a>
+				</div>
+			</div>
+			<!-- container -->
+		</div>
+		<!-- works -->
+		<!-- works-bottom -->
+		<div class="work-bottom">
+			<!-- container -->
+			<div class="container">
+			<!-- banner Slider starts Here -->
+	  			<script src="{% static 'js/responsiveslides.min.js' %}"></script>
+			 <script>
+			    // You can also use "$(window).load(function() {"
+			    $(function () {
+			      // Slideshow 4
+			      $("#slider4").responsiveSlides({
+			        auto: true,
+			        pager: true,
+			        nav: false,
+			        speed: 500,
+			        namespace: "callbacks",
+			        before: function () {
+			          $('.events').append("<li>before event fired.</li>");
+			        },
+			        after: function () {
+			          $('.events').append("<li>after event fired.</li>");
+			        }
+			      });
+			
+			    });
+			  </script>
+			<!--//End-slider-script-->
+				<div  id="top" class="callbacks_container">
+			      <ul class="rslides" id="slider4">
+			        <li>
+			          <div class="slider-top wow bounceIn" data-wow-delay="0.4s">
+			          	<p>"If you're looking for a modern, easy and fun to use website, PlayMakers has you covered. One of the best interfaces out there today, displaying their vast array of odds in a smart manner."</p>
+			          	<img src="{% static 'images/user2.png' %}" alt="" />
+						<p class="title">Jack Efron</p>
+			          </div>
+			        </li>
+			        <li>
+			          <div class="slider-top wow bounceIn" data-wow-delay="0.4s">
+			          	<p>"PlayMakers built a reputation as a reliable sportsbook that manages to stay current, offering a wide choice of odds on sports around the world, fantastic customer service."</p>
+			          	<img src="{% static 'images/user.png' %}" alt="" />
+						<p class="title">Jack Efron</p>
+			          </div>
+			        </li>
+			        <li>
+			          <div class="slider-top wow bounceIn" data-wow-delay="0.4s">
+			          	<p>"PlayMakers is one of the top sportsbooks, covering all the latest sports lines ahead of each game,you’re looking for more ways to interact with PlayMakers, check out their Facebook or Twitter."</p>
+			          	<img src="{% static 'images/user1.png' %}" alt="" />
+						<p class="title">Jack Efron</p>
+			          </div>
+			        </li>
+			      </ul>
+			    </div>
+			    <div class="clearfix"> </div>
+	  			<!-- banner Slider Ends Here --> 
+			</div>
+			<!-- container -->
+		</div>
+		<!-- works-bottom -->
+		<!-- team -->
+		<div class="our-team">
+			<!-- container -->
+			<div class="container">
+				<div class="team-hedding wow bounceIn" data-wow-delay="0.4s">
+					<h3>Our team.</h3>
+				</div>
+				<div class="team-grids">
+					<div class="col-md-4 team-grid">
+						<img src="{% static 'images/CEO.png' %}" alt="" class="wow bounceIn" data-wow-delay="0.4s" />
+						<ul class="plus wow fadeInRight">
+							<li class="twitter"><a href="#"> </a></li>
+							<li class="facebook"><a href="#"> </a></li>
+							<li class="cam"><a href="#"> </a></li>
+						</ul>
+						<div class="team-grid-text wow bounceIn" data-wow-delay="0.4s">
+							<h5>Rohith</h5>
+							<p class="caption">CEO & Founder</p>
+							<p>He is responsible for implementing existing plans and policies, ensuring the successful management of the business and setting future strategy. He is ultimately responsible for the success of PlayMakers.</p>
+						</div>
+					</div>
+					<div class="col-md-4 team-grid">
+						<img src="{% static 'images/CO-Founder.png' %}" alt="" class="wow bounceIn" data-wow-delay="0.4s" />
+						<ul class="plus wow fadeInRight">
+							<li class="twitter"><a href="#"> </a></li>
+							<li class="facebook"><a href="#"> </a></li>
+							<li class="cam"><a href="#"> </a></li>
+						</ul>
+						<div class="team-grid-text wow bounceIn" data-wow-delay="0.4s">
+							<h5>Shyam sankar</h5>
+							<p class="caption">Co-Founder</p>
+							<p>He is a member of the executive team who played a role in the founding of our company. This person typically works with other founders to create and launch the PlayMakers.</p>
+						</div>
+					</div>
+					<div class="col-md-4 team-grid">
+						<img src="{% static 'images/CO-Founder1.png' %}" alt="" class="wow bounceIn" data-wow-delay="0.4s" />
+						<ul class="plus wow fadeInRight">
+							<li class="twitter"><a href="#"> </a></li>
+							<li class="facebook"><a href="#"> </a></li>
+							<li class="cam"><a href="#"> </a></li>
+						</ul>
+						<div class="team-grid-text wow bounceIn" data-wow-delay="0.4s">
+							<h5>JayaKrishnan</h5>
+							<p class="caption">Co-Founder</p>
+							<p>He is a member of the executive team who played a role in the founding of our company. This person typically works with other founders to create and launch the PlayMakers.</p>
+						</div>
+					</div>
+					<div class="col-md-4 team-grid">
+						<img src="{% static 'images/CO-Founder2.png' %}" alt="" class="wow bounceIn" data-wow-delay="0.4s" />
+						<ul class="plus wow fadeInRight">
+							<li class="twitter"><a href="#"> </a></li>
+							<li class="facebook"><a href="#"> </a></li>
+							<li class="cam"><a href="#"> </a></li>
+						</ul>
+						<div class="team-grid-text wow bounceIn" data-wow-delay="0.4s">
+							<h5>Rinshad Ali</h5>
+							<p class="caption">Co-Founder</p>
+							<p>He is a member of the executive team who played a role in the founding of our company. This person typically works with other founders to create and launch the PlayMakers.</p>
+						</div>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="plus wow fadeInLeft"> 
+					<a href="#"><img src="{% static 'images/plus.png' %}" alt="" /></a>
+				</div>
+			</div>
+			<!-- container -->
+		</div>
+		<!-- team -->
+		<!-- team-bottom -->
+		<div class="team-bottom">		
+		</div>
+		<!-- team-bottom -->
+		<!-- skills -->
+		<div id="about" class="skills">
+			<!-- container -->
+			<div class="container">
+				<div class="skills-hedding wow bounceIn" data-wow-delay="0.4s">
+					<h3>Our skills.</h3>
+				</div>
+				<div class="col-md-9">
+					<div class="col-md-3 skills-grid">
+						<div class="circle" id="circles-1"></div>
+					</div>
+					<div class="col-md-3 skills-grid">
+						<div class="circle" id="circles-2"></div>
+					</div>
+					<div class="col-md-3 skills-grid">
+						<div class="circle" id="circles-3"></div>
+					</div>
+					<div class="col-md-3 skills-grid">
+						<div class="circle" id="circles-4"></div>
+					</div>
+					<div class="clearfix"> </div>
+					<!--/-->
+				 <script type="text/javascript" src="{% static 'js/circles.js' %}"></script>
+					         <script>
+								var colors = [
+										['#FFFFFF', '#42B8DD'], ['#FFFFFF', '#42B8DD'], ['#FFFFFF', '#42B8DD'], ['#FFFFFF', '#42B8DD']
+									];
+								for (var i = 1; i <= 5; i++) {
+									var child = document.getElementById('circles-' + i),
+										percentage = 40 + (i * 10);
+										
+									Circles.create({
+										id:         child.id,
+										percentage: percentage,
+										radius:     80,
+										width:      10,
+										number:   	percentage / 10,
+										text:       '%',
+										colors:     colors[i - 1]
+									});
+								}
+						
+				</script>
+				<!--/-->
+					<div class="skills-grid-text">
+						<h5 class="plus wow fadeInRight">Something about our skills</h5>
+						<p class="wow bounceIn" data-wow-delay="0.4s"><h4>This application is intended to manage all the activities of Online Turf Booking.Turf Booking mobile application is developed to provide the solution of online booking
+							Turf Booking mobile application is developed to provide the solution of online booking of the available turf that would help the Football,Cricket,Shuttle,Running enthusiastic players to book the turf.
+							To provide a bug-free Booking System to Players or users.To allow users to search and view the Information of Turf online using our application,
+							Maintain the List of Turf and Booking History so it will be easy to access any time 24*7.</h4>
+						</p>
+					</div>
+				</div>
+				
+							
+					
+						<script>
+							$(document).ready(function(){
+								$(".tab1 p").hide();
+								$(".tab2 p").hide();
+								$(".tab3 p").hide();
+								$(".tab4 p").hide();
+								$(".tab5 p").hide();
+								$(".tab1 ul").click(function(){
+									$(".tab1 p").slideToggle(300);
+									$(".tab2 p").hide();
+									$(".tab3 p").hide();
+									$(".tab4 p").hide();
+									$(".tab5 p").hide();
+								})
+								$(".tab2 ul").click(function(){
+									$(".tab2 p").slideToggle(300);
+									$(".tab1 p").hide();
+									$(".tab3 p").hide();
+									$(".tab4 p").hide();
+									$(".tab5 p").hide();
+								})
+								$(".tab3 ul").click(function(){
+									$(".tab3 p").slideToggle(300);
+									$(".tab4 p").hide();
+									$(".tab5 p").hide();
+									$(".tab2 p").hide();
+									$(".tab1 p").hide();
+								})
+								$(".tab4 ul").click(function(){
+									$(".tab4 p").slideToggle(300);
+									$(".tab3 p").hide();
+									$(".tab2 p").hide();
+									$(".tab1 p").hide();
+									$(".tab5 p").hide();
+								})
+								$(".tab5 ul").click(function(){
+									$(".tab5 p").slideToggle(300);
+									$(".tab4 p").hide();
+									$(".tab3 p").hide();
+									$(".tab2 p").hide();
+									$(".tab1 p").hide();
+									
+								})
+								
+							});
+						</script>
+						<!-- script -->
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<!-- container -->
+		</div>
+		<!-- skills -->
+		<!-- skills-middle -->
+		<div class="skills-middle">
+			<!-- container -->
+			<div class="container">
+				<div class="skills-middle-text">
+					<form>
+						<input type="text" class="text plus wow fadeInLeft" value="Enter your e-mail here..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter your e-mail here...';}">
+						<input type="submit" class="text plus wow fadeInRight" value="Subscribe">
+					</form>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<!-- container -->
+		</div>
+		<!-- skills-middle -->
+		<!-- skills-bottom -->
+		<div class="skills-bottom">
+			<!-- container -->
+			<div class="container">
+				<div class="skills-images wow bounceIn" data-wow-delay="0.4s">
+					<div class="envato"><img src="{% static 'images/envato.png' %}" alt="" /></div>
+					<div class="envato"><img src="{% static 'images/word.png' %}" alt="" /></div>
+					<div class="envato"><img src="{% static 'images/dribble.png' %}" alt="" /></div>
+					<div class="envato"><img src="{% static 'images/envato.png' %}" alt="" /></div>
+					<div class="envato"><img src="{% static 'images/word.png' %}" alt="" /></div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<!-- container -->
+		</div>
+		<!-- skills-bottom -->
+		<!-- contact -->
+		<div id="contact" class="contact">
+			<!-- container -->
+			<div class="container">
+				<div class="contact-hedding wow bounceIn" data-wow-delay="0.4s">
+					<h3>Contact us.</h3>
+				</div>
+				<p class="wow bounceIn" data-wow-delay="0.4s">Sadanam College Pathirippala,Palakkad District,Kerala
+					<span>+91 808 656 4863 | info.rsjr@gmail.com</span>
+				</p>
+				<div class="social-icons wow bounceIn" data-wow-delay="0.4s">
+					<ul>
+						<li class="twit"></li>
+						<li class="fb"></li>
+						<li class="google"></li>
+						<li class="pinterest"></li>
+						<li class="rect"></li>
+						<li class="youtube"></li>
+						<li class="skip"></li>
+						<li class="dribbble"></li>
+					</ul>
+				</div>
+				<div class="col-md-8 text-fields">
+					<div class="text-fields-left">
+						<div class="text-field-email">
+							<form>
+								<input type="text" class="text" value="EMAIL" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'EMAIL';}">
+							</form>
+							<div class="msg-img"></div>
+						</div>
+						<div class="text-field-name">
+							<form>
+								<input type="text" class="text" value="NAME" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'NAME';}">
+							</form>
+							<div class="user-img"></div>
+						</div>
+						<div class="clearfix"> </div>
+						<div class="text-field-area wow fadeInLeft">
+							<form>
+								<textarea value="MESSAGE:" onfocus="if(this.value == 'MESSAGE') this.value='';" onblur="if(this.value == '') this.value='MESSAGE';">MESSAGE</textarea>
+							</form>
+							<div class="pen-img"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 text-fields">
+					<div class="text-fields-right wow fadeInRight">
+						<form>
+							<input type="submit" value="Submit">
+						</form>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<!-- container -->
+		</div>
+		<!-- contact -->
+		<!-- footer -->
+		<div class="footer">
+			<!-- container -->
+			<div class="container">
+				<h4>PlayMakers</h4>
+				<div class="copyright">
+					<p>
+						Template by <a href="http://w3layouts.com/">W3layouts.com</a>
+					</p>
+				</div>
+				<a class="scroll" href="#home"><img src="{% static 'images/up-arrow.png' %}" alt="" /></a>
+			</div>
+			<!-- container -->
+		</div>
+		<!-- footer -->
+	</body>
+</html>
+

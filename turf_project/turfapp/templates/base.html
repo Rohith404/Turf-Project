@@ -1,0 +1,103 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PlayMakers</title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <!-- web-font -->
+    <link
+        href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,300,700,800,400,600"
+        rel="stylesheet" type="text/css" />
+    <!-- web-font -->
+    <!-- js -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <script type="application/x-javascript">
+      addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
+    </script>
+    <!-- js -->
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript" src="{% static 'js/move-top.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/easing.js' %}"></script>
+    <script type="text/javascript">
+        // jQuery(document).ready(function ($) {
+        //     $(".scroll").click(function (event) {
+        //         event.preventDefault();
+        //         $("html,body").animate(
+        //             { scrollTop: $(this.hash).offset().top },
+        //             1000
+        //         );
+        //     });
+        // });
+    </script>
+    <!-- start-smoth-scrolling -->
+    <!-- animated-css -->
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <!-- animated-css -->
+</head>
+
+<body>
+    <div id="home" class="heder">
+        <!-- container -->
+        <div class="container">
+            <div class="header-top">
+                <div class="heder-logo">
+                    <h1><a href="#">PlayMakers</a></h1>
+                </div>
+                <div class="top-nav">
+                    <span class="menu"><img src="{% static 'images/menu.png' %}" alt="" /></span>
+                    <ul class="nav1">
+							{% if user.is_authenticated %}
+							<li><a class="scroll" href="{% url 'logout' %}">Logout</a></li>
+							<li><a class="scroll" href="{% url 'details' %}">complaint</a></li>
+							{% if  user.profile.is_owner %}
+							<li><a class="scroll" href="{% url 'bookings' %}">Turf Bookings</a></li>
+							<li><a class="scroll" href="{% url 'show' %}">Show complaints</a></li>
+							<li><a class="scroll" href="{% url 'add_turf' %}">Add turf</a></li>
+							{% else %}
+							<li><a class="scroll" href="{% url 'my-bookings' %}">My Bookings</a></li>
+							<li><a class="scroll" href="{% url 'turf_list' %}">See Turfs</a></li>
+							{% endif %}
+							{% endif %}
+                        <li>
+        
+                        </li>
+                    </ul>
+
+                    <!-- script-for-menu -->
+                    <script>
+                        $("span.menu").click(function () {
+                            $("ul.nav1").slideToggle(300, function () {
+                                // Animation complete.
+                            });
+                        });
+                    </script>
+                    <!-- /script-for-menu -->
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- container -->
+    </div>
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <p  {% if message.tags %} class="alert alert-{{ message.tags }} " {% endif %}> {{ message }} </p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    {% block content %}
+    {% endblock content %}
+    {% block script %}
+    {% endblock script %}
+</body>
+
+</html>

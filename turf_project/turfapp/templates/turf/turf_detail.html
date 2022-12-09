@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block content %}
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<!-- <script src="https://maps.google.com/maps/api/js?sensor=false">
+</script> -->
+<style>
+    img {
+        max-width: 300px;
+    }
+</style>
+<div class="container">
+    <h1>{{ object.name }}</h1>
+    <a href="{% url 'booking' turf_id=object.id %}" class="btn btn-primary">Book for ₹{{object.rent_per_hour}} for  hour</a>
+    <h2>Location</h2>
+    <p class="address">{{object.address}}</p>
+    <!-- <div id="demo2" style="width: 500px; height: 500px"></div> -->
+    <div id="map" style="width: 500px; height: 500px"></div>
+    <h2>Pictures</h2>
+    <div class="row">
+    <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+        {% for image_obj in object.images.all %}
+        <img
+        src="{{image_obj.image.url}}"
+        class="w-100 shadow-1-strong rounded mb-4"
+        alt="{{image_obj.image.name}}"/>
+        {% empty %}
+        <h2>No images</h2>
+        {% endfor %}
+    </div>
+    
+</div>
+{% endblock content %}
+{% block script %}
+<!-- <script>
+    pos = {
+        latitude: {{ object.longitude }}
+        longitude: {{ object.latitude }}
+    }
+    function showLoc(pos) {
+        latt = pos.latitude;
+        long = pos.longitude;
+        var lattlong = new google.maps.LatLng(latt, long);
+        var OPTions = {
+            center: lattlong,
+            zoom: 10,
+            mapTypeControl: true,
+            navigationControlOptions: {
+                style: google.maps.NavigationControlStyle.SMALL,
+            },
+        };
+        var mapg = new google.maps.Map(
+            document.getElementById("demo2"),
+            OPTions
+        );
+        var markerg = new google.maps.Marker({
+            position: lattlong,
+            map: mapg,
+            title: "You are here!",
+        });
+    }
+    showLoc(pos);
+</script> -->
+<script>
+    
+    var map;
+    var geocoder;
+    function InitializeMap() {
+
+        var latlng = new google.maps.LatLng({{ object.latitude }}, {{ object.longitude }});
+        var myOptions =
+        {
+            zoom: 8,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            disableDefaultUI: true
+        };
+        map = new google.maps.Map(document.getElementById("map"), myOptions);
+    }
+
+    function FindLocaiton() {
+        geocoder = new google.maps.Geocoder();
+        InitializeMap();
+
+        var address = document.getElementById("addressinput").value;
+        geocoder.geocode({ 'address': address }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+
+            }
+            else {
+                alert("Geocode was not successful for the following reason: " + status);
+            }
+        });
+
+    }
+    window.onload = InitializeMap
+</script>
+{% endblock script %}

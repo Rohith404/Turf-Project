@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    .time-picker-container {
+        display: flex;
+        justify-content: space-around;
+    }
+    .time-picker {
+        padding: 5px;
+        background-color: blanchedalmond;
+        border-radius: 3px;
+        margin-bottom: 8px;
+    }
+    .time-picker-selected {
+        border: 1px solid red;
+    }
+    .display-none {
+        display: none;
+    }
+</style>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<div class="container">
+    <div class="alert alert-danger display-none" id="error"></div>
+    <form action="" method="post" id="form1">
+        {{form | crispy}}
+        {% csrf_token %}
+        <input type="hidden" name="amount" value="{{ rent }}">
+        <input type="hidden" name="order_id" value="{{ order_id }}">
+        <label for="">Select any time:</label>
+        <div class="time-picker-container">
+            <div class="time-stamp">
+                <h4>Morning</h4>
+                <div class="time-picker" data-valueFrom="6:00" data-valueTo="7:00">6 am - 7 am</div>
+                <div class="time-picker" data-valueFrom="7:00" data-valueTo="8:00">7 am - 8 am</div>
+                <div class="time-picker" data-valueFrom="8:00" data-valueTo="9:00">8 am - 9 am</div>
+                <div class="time-picker" data-valueFrom="9:00" data-valueTo="10:00">9 am - 10 am</div>
+                <div class="time-picker" data-valueFrom="10:00" data-valueTo="11:00">10 am - 11 am</div>
+                <div class="time-picker" data-valueFrom="11:00" data-valueTo="12:00">11 am - 12 pm</div>
+            </div>
+            <div class="time-stamp">
+                <h4>Afternoon:</h4>
+                <div class="time-picker" data-valueFrom="13:00" data-valueTo="14:00">1 pm - 2 pm</div>
+                <div class="time-picker" data-valueFrom="14:00" data-valueTo="15:00">2 pm - 3 pm</div>
+                <div class="time-picker" data-valueFrom="15:00" data-valueTo="16:00">3 pm - 4 pm</div>
+                <div class="time-picker" data-valueFrom="16:00" data-valueTo="17:00">4 pm - 5 pm</div>
+                <div class="time-picker" data-valueFrom="17:00" data-valueTo="18:00">5 pm - 6 pm</div>
+            </div>
+            <div class="time-stamp">
+                <h4>Night:</h4>
+                <div class="time-picker" data-valueFrom="18:00" data-valueTo="19:00">6 pm - 7 pm</div>
+                <div class="time-picker" data-valueFrom="19:00" data-valueTo="20:00">7 pm - 8 pm</div>
+                <div class="time-picker" data-valueFrom="20:00" data-valueTo="21:00">8 pm - 9 pm</div>
+            </div>
+        </div>
+        <button id="rzp-button1" type="submit" class="btn btn-primary">Pay {{ rent }}</button>
+    </form>
+</div>
+{% endblock content %}
+{% block script %}
+<script>
+    var rent =  rent  * 100;
+    var options = {
+        "key": "rzp_test_lGPkBARO1wA5iz",
+        "amount": rent, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        "currency": "INR",
+        // "name": "Acme Corp",
+        // "description": "Test Transaction",
+        "image": "https://example.com/your_logo",
+        "order_id": "{{ order_id }}",
+        "handler": function (response) {
+            $("#id_razorpay_order_id").val(response.razorpay_order_id)
+            $("#id_razorpay_payment_id").val(response.razorpay_payment_id)
+            $("id_razorpay_signature").val(response.razorpay_signature)
+            $("#form1").submit()
+        },
+        // "prefill": {
+        //     "name": "Gaurav Kumar",
+        //     "email": "gaurav.kumar@example.com",
+        //     "contact": "9999999999"
+        // },
+        "notes": {
+            "address": "Razorpay Corporate Office"
+        },
+        "theme": {
+            "color": "#3399cc"
+        }
+    };
+    var rzp1 = new Razorpay(options);
+    rzp1.on('payment.failed', function (response){
+            alert(response.error.code);
+            alert(response.error.description);
+            alert(response.error.source);
+            alert(response.error.step);
+            alert(response.error.reason);
+            alert(response.error.metadata.order_id);
+            alert(response.error.metadata.payment_id);
+    });
+    document.getElementById('rzp-button1').onclick = function(e){
+        e.preventDefault();
+        var isTimeSelected = false;
+        var dateSelected = false;
+        $('.time-picker').each(function() {
+            console.log($(this))
+            if($(this).hasClass('time-picker-selected')) {
+                console.log('found')
+                isTimeSelected = true;
+                return false;
+            }
+        })
+
+        if($('#id_date').val() !== '') dateSelected = true;
+        else dateSelected = false;
+
+
+        if(isTimeSelected && dateSelected) {
+            $.get(
+                'http://127.0.0.1:8000/check-availablity/',
+                {
+                    date: $('#id_date').val(),
+                    time_from: $('#id_time_from').val(),
+                    turf_id: '{{turf_id}}',
+                },
+                function(data, status) {
+                    if(data === 'ok') {
+                        console.log('slot is available')
+                        rzp1.open();
+                        $('#error').addClass('display-none')
+                    } else {
+                        $('#error').text("This slot is already booked")
+                        $('#error').removeClass('display-none')
+                    }
+                }
+            )
+        } else if(!isTimeSelected) {
+            $('#error').text("You need to select any time!")
+            $('#error').removeClass('display-none')
+        } else if(!dateSelected) {
+            $('#error').text("You need to select date!")
+            $('#error').removeClass('display-none')
+        }
+    }
+
+    $(".time-picker").click(function(e) {
+        var time_from = $(this).attr('data-valueFrom');
+        var time_to = $(this).attr('data-valueTo');
+        $('.time-picker').removeClass('time-picker-selected');
+        $(this).addClass('time-picker-selected');
+        $('#id_time_from').val(time_from);
+        $('#id_time_to').val(time_to);
+    })
+</script>
+{% endblock script %}
